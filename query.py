@@ -51,12 +51,12 @@ class QueryProcessor:
 
         tokens = nltk.tokenize.word_tokenize(qbody)
 
-        corrected_tokens = [correction(word) for word in tokens]
+        corrected_tokens = [correction(word) for word in tokens] #spell check
         converted_tokens = [word.lower() for word in corrected_tokens]
         #below query will not have stop words
         clean_query = []
 
-        for word in converted_tokens:
+        for word in converted_tokens:  #removing stop words
             if util.isStopWord(word):
                 clean_query.append(util.stemming(word))
         if len(clean_query) > 0:
@@ -254,15 +254,15 @@ def query(processing_algorithm, query, index, queryId): #args for command line
 
 if __name__ == '__main__':
 
-    index_file = str(sys.argv[1]) #index_file.pickle
-    algo = int(sys.argv[2]) # 0
-    query_text = str(sys.argv[3]) #query.text
-    queryId = str(sys.argv[4]) # '009'
+    #index_file = str(sys.argv[1]) #index_file.pickle
+    #algo = int(sys.argv[2]) # 0
+    #query_text = str(sys.argv[3]) #query.text
+    #queryId = str(sys.argv[4]) # '009'
 
-    # index_file = "index_file.pickle"
-    # algo = 1
-    # query_text = "query.text"
-    # queryId = '009'
+    index_file = "index_file.pickle"
+    algo = 0
+    query_text = "query.text"
+    queryId = '009'
     qrys = loadCranQry(query_text)
     invertedInd = InvertedIndex()
     #loading the indexed doucment file
